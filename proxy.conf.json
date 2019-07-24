@@ -1,0 +1,10 @@
+{
+  "/": {
+    "target": {
+      "host": "localhost",
+      "protocol": "https",
+      "port": "8080"
+    }
+
+  }
+}
