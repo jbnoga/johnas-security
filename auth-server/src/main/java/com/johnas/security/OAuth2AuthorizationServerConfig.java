@@ -40,7 +40,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
       .secret("secret")
       .authorizedGrantTypes("authorization_code")
       .scopes("foo", "read", "write")
-      .redirectUris("http://localhost:8081/");
+      .redirectUris("http://localhost:9000/");
   }
 
   @Override
