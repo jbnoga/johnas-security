@@ -2,9 +2,34 @@
   "/": {
     "target": {
       "host": "localhost",
-      "protocol": "https",
+      "protocol": "http",
       "port": "8080"
-    }
+    },
+    "logLevel": "debug"
 
+  },
+  "/resource": {
+    "target": {
+      "host": "localhost",
+      "protocol": "http",
+      "port": "8080"
+    },
+    "logLevel": "debug"
+  },
+  "/login": {
+    "target": {
+      "host": "localhost",
+      "protocol": "http",
+      "port": "8080"
+    },
+    "logLevel": "debug"
+  },
+  "/user": {
+    "target": {
+      "host": "localhost",
+      "protocol": "http",
+      "port": "8080"
+    },
+    "logLevel": "debug"
   }
 }

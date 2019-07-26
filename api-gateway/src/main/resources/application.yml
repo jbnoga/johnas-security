@@ -1,14 +1,21 @@
-security:
-  user:
-    password: password
-  ignored:
-    - "*.bundle.*"
 spring:
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
   session:
     store-type: redis
+
 zuul:
   routes:
     resource:
       path: /resource/**
       url: http://localhost:9000
       sensitive-headers:
+
+logging:
+  level:
+    org:
+      springframework: DEBUG
+
+

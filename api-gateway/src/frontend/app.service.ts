@@ -11,19 +11,20 @@ export class AppService {
 
   authenticate(credentials, callback) {
 
-        const headers = new HttpHeaders(credentials ? {
-            authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
-        } : {});
+    const headers = new HttpHeaders(credentials ? {
+      authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+    } : {});
 
-        this.http.get('user', {headers: headers}).subscribe(response => {
-            if (response['name']) {
-                this.authenticated = true;
-            } else {
-                this.authenticated = false;
-            }
-            return callback && callback();
-        });
+    this.http.get('user', {headers: headers}).subscribe(response => {
+      console.log('subscribed to user on authentication, response:', response);
+      if (response['name']) {
+        this.authenticated = true;
+      } else {
+        this.authenticated = false;
+      }
+      return callback && callback();
+    });
 
-    }
+  }
 
 }

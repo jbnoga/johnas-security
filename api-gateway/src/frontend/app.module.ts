@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, Http
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -20,7 +21,7 @@ export class XhrInterceptor implements HttpInterceptor {
 }
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home'},
+  { path: '', pathMatch: 'full', redirectTo: 'home', runGuardsAndResolvers: 'always'},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent}
 ];
@@ -32,12 +33,19 @@ const routes: Routes = [
     LoginComponent
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),
     BrowserModule,
+
     HttpClientModule,
     FormsModule
   ],
-  providers: [AppService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+  exports: [
+    RouterModule,
+  ],
+  providers: [AppService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// RELOADING CURRENT ROUTE -> https://medium.com/engineering-on-the-incline/reloading-current-route-on-click-angular-5-1a1bfc740ab2
+// WHITELABEL ERROR PAGE AFTER REFRESH -> https://stackoverflow.com/questions/38914264/whitelabel-error-page-after-refresh
